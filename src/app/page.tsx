@@ -1,4 +1,4 @@
-import ProductCard from "@/components/ui/product_card";
+import ProductCard from "@/components/products/product_card";
 import { getProducts } from "@/lib/getProducts";
 import { Product } from "@/types/product";
 

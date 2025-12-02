@@ -1,0 +1,12 @@
+@keyframes shimmer-move {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.group:hover .animate-shimmer {
+  animation: shimmer-move 2s infinite linear;
+}
