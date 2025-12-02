@@ -8,7 +8,7 @@ interface Cart {
 
 interface CartAction {
   addToCart: (item: Product) => void;
-  removeFromCart: (id: string) => void;
+  removeFromCart: (id: number) => void;
   clearCart: () => void;
 }
 
@@ -29,11 +29,12 @@ export const createCartSlice: StateCreator<CartSlice> = (set) => ({
   },
 
   removeFromCart: (id) => {
-    set((state)=> {
-        itemsInCart: state.itemsInCart.filter((product) => product.id !== id),
-        shoppingCartNumber: state.itemsInCart -1;
-    })
+    set((state) => ({
+      itemsInCart: state.itemsInCart.filter((product) => product.id !== id),
+      shoppingCartNumber: state.shoppingCartNumber - 1,
+    }));
   },
+  
   clearCart: () => {
     set({ itemsInCart: [], shoppingCartNumber: 0 });
   },
