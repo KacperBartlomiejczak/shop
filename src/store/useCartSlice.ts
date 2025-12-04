@@ -1,24 +1,31 @@
 import { StateCreator } from "zustand";
 import { Product } from "@/types/product";
 
+interface ItemsInCart {
+  id: number;
+  title: string;
+  count: number;
+  image: string;
+}
+
 interface Cart {
   shoppingCartNumber: number;
-  itemsInCart: Product[];
+  itemsInCart: ItemsInCart[];
 }
 
 interface CartAction {
-  addToCart: (item: Product) => void;
+  addToCart: (item: ItemsInCart) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
 }
 
-type CartSlice = CartAction & Cart;
+export type CartSlice = CartAction & Cart;
 
 export const createCartSlice: StateCreator<CartSlice> = (set) => ({
   shoppingCartNumber: 0,
   itemsInCart: [],
 
-  addToCart: (item: Product) => {
+  addToCart: (item: ItemsInCart) => {
     set((state) => {
       const updatedItems = [...state.itemsInCart, item];
       return {
@@ -34,7 +41,7 @@ export const createCartSlice: StateCreator<CartSlice> = (set) => ({
       shoppingCartNumber: state.shoppingCartNumber - 1,
     }));
   },
-  
+
   clearCart: () => {
     set({ itemsInCart: [], shoppingCartNumber: 0 });
   },
